@@ -28,6 +28,8 @@ void mousePressed() {
 if (gmscr==0) {
 gmscr=1;
 }else if (gmscr==2) {
+gmscr=3;
+}else if(gmscr==3){
 gmscr=0;
 }
 }
@@ -41,11 +43,13 @@ void draw() {
         gamescreen();
     } 
     if (gmscr == 2) {
-        
-        gameover();
-        
-        
-        
+        restart();
+      
+    if(gmscr==3){
+      gameover();
+      
+    }
+           
     }
 }
 /*****screen block******* */
@@ -209,7 +213,7 @@ rect(ballx-(healthBar/2),bally-30,healthBar,5);
 if (health>60) {
 fill(46, 204, 113);
     }else if (health>30) {
-fill( 230 ,126 ,36 );
+fill( 222,45,45 );
     }else {
 fill( 231 ,76 ,60 );
     }
@@ -219,14 +223,7 @@ rect(ballx-(healthBar/2),bally-30,healthBar*(health/maxHealth),5);
 
 void decreaseHealth(){
 health -= healthDrop;
-if (health<=0) {
-  textAlign(CENTER);
-  fill(200);
-textSize(30);
-text(  score, height/2, 50);
-gmscr=2;
 
-    }
 }
 
 void gameover(){
@@ -241,7 +238,7 @@ textSize(15);
 text(  "click to restart", height/2, width/2-10);
 
 
-restart();  
+ 
 }
 
 
@@ -298,6 +295,16 @@ if (ballx>gapWallX+(gapWallWidth/2)&&wallScored==0) {
 wallScored=1;
 wall[4]=1;
 score++;
+if (health<=0) {
+  background(0);
+  textAlign(CENTER);
+textSize(30);
+  fill(27,216,11);
+
+text(  score, height/2,200);
+gmscr=2;
+
+    }
 }
 
 }
